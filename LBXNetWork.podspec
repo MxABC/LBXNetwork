@@ -14,6 +14,11 @@ Pod::Spec.new do |s|
   s.source_files = 'LBXNetWork/**/*.{m,h}'
   s.public_header_files = 'LBXNetWork/AFNetworkVendor/AFNNetworkRequest.h','LBXNetWork/LBXHttpRequest.h','LBXNetWork/LBXNetWork.h','LBXNetWork/LBXTcpStream/LBXTcpStream.h'
   s.ios.frameworks = 'Foundation', 'UIKit'
+  
+  s.dependency 'AFNetworking', '~> 3.2.0'
+  
+  s.dependency 'YYCache', '~> 1.0.4'
+  
   s.requires_arc = true
 
 end
