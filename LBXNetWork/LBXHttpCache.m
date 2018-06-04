@@ -7,7 +7,7 @@
 //
 
 #import "LBXHttpCache.h"
-#import <YYCache.h>
+#import "YYCache.h"
 #import <CommonCrypto/CommonDigest.h>
 
 #define LBXNetworkCacheName @"LBXNetworkCacheName"
