@@ -18,6 +18,7 @@ pod 'LBXNetWork',git:"https://github.com/MxABC/LBXNetwork.git"
 将LBXNetWork文件夹拖到工程里，并且需要AFNetworking3.x和YYCache1.0.x库
 
 #### 使用示例
+具体使用看Demo首页里面几个调用方法以及模拟业务层`LBXNetwork (TheAPP)`代码及说明
 
 ```
  [LBXNetwork HttpWithRequestBlock:^(LBXHttpRequest * request) {
@@ -54,7 +55,7 @@ pod 'LBXNetWork',git:"https://github.com/MxABC/LBXNetwork.git"
 ```
 
 LBXHttpRequest请求参数通过block回调回来，调用者根据主要根据接口实际业务填充相关参数即可
-下面为LBXHttpRequest的定位
+下面为LBXHttpRequest的定义，具体使用时，查看每个属性的说明即可
 
 ```
 ///请求或返回数据形式
