@@ -13,9 +13,7 @@
 需要AFNetworking3.x和YYCache1.x支持
 
 ```
-pod 'AFNetworking','~> 3.0'
-pod 'YYCache','~>1.0.4'
-pod 'LBXNetWork',git:"https://github.com/MxABC/LBXNetwork.git"
+pod 'LBXNetWork', '~> 1.0.0'
 ```
 
 #### 手动
