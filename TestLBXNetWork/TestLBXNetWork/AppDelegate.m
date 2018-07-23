@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+//包含头文件
+#import <netdb.h>
+#import <sys/socket.h>
+#import <arpa/inet.h>
 
 @interface AppDelegate ()
 
@@ -17,7 +21,83 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    [[self class]getIpByHostName:@"www.baidu.com"];
+    
+//    [[self class]getIpByHostName:@"https://tcc.taobao.com/"];
+    
+//    [[self class]getIpByHostName:@"www.taobao.com"];
+    
+    
+//     [[self class]getIpByHostName:@"www.handkoo.com"];
+    
+    
+    union {
+        char str[4];
+        uint32_t num;
+    }un;
+    
+    uint32_t num = 42;
+    num = htonl(num);
+    
+    un.num = num;
+
+    num = ntohl(num);
+    
+    
+    union {
+        char str[4];
+        uint32_t num;
+    }un1;
+    
+    memset(un1.str, 0, 4);
+    memcpy(un1.str + 1, un.str+1, 3);
+    
+    num = ntohl(un1.num);
+    
+//    uint32_t numNew = 0;
+//    memcpy(&numNew, un.str+1, 3);
+    
+//    numNew = ntohl(numNew);
+    
+    NSLog(@"");
+    
+    NSInteger i = pow(2, 24);
+    
+//    {
+//        union {
+//            char str[4];
+//            uint32_t num;
+//        }un;
+//            un.num = htonl(data.length);
+//        fwrite(un.str, 3, 1, recordFile);
+//    }
+
+    
     return YES;
+}
+
++(NSString*)getIpByHostName:(NSString*)strHostName {
+    struct hostent* phot = nil;
+    @try {
+        phot = gethostbyname(strHostName.UTF8String);
+        if(phot == nil)
+            NSLog(@"getIpByHostName %@ = nil", strHostName);
+    }
+    @catch (NSException *exception) {
+        NSArray *stack = [exception callStackSymbols]; // 异常的堆栈信息
+        NSString *reason = [exception reason]; // 出现异常的原因
+        NSString *name = [exception name]; // 异常名称
+//        Log_Error(@"getIpByHostName %@\n异常:%@\n原因：%@\n信息：%@", strHostName, name, reason, stack);
+        return nil;
+    }
+    if(phot == nil) return nil;
+    struct in_addr ip_addr;
+    memcpy(&ip_addr, phot->h_addr_list[0], 4);
+    char ip[20] = {0};
+    inet_ntop(AF_INET, &ip_addr, ip, sizeof(ip));
+    
+    return [NSString stringWithUTF8String:ip];
 }
 
 
