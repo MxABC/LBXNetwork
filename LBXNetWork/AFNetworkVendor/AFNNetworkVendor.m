@@ -84,11 +84,12 @@
     }
     manager.responseSerializer.acceptableContentTypes = request.responseAcceptableContentTypes;
     
+    NSURLSessionDataTask *task  = [manager GET:request.requestUrl parameters:request.requestParameters headers:request.headers progress:nil success:success failure:fail];
     
     //开始请求
-    NSURLSessionDataTask *task = [manager GET:request.requestUrl
-                                   parameters:request.requestParameters
-                                     progress:nil success:success failure:fail];
+//    NSURLSessionDataTask *task = [manager GET:request.requestUrl
+//                                   parameters:request.requestParameters
+//                                     progress:nil success:success failure:fail];
     
     return task;
 }
@@ -141,9 +142,12 @@
     NSString *requestUrl = request.requestUrl;
     NSDictionary *requestParas = request.requestParameters;
     //请求
-    NSURLSessionDataTask *task = [manager POST:requestUrl
-                                    parameters:requestParas
-                                      progress:nil success:success failure:fail];
+//    NSURLSessionDataTask *task = [manager POST:requestUrl
+//                                    parameters:requestParas
+//                                      progress:nil success:success failure:fail];
+    
+    
+    NSURLSessionDataTask *task = [manager POST:requestUrl parameters:requestParas headers:request.headers progress:nil success:success failure:fail];
     
     return task;
 }
@@ -196,7 +200,10 @@
     manager.responseSerializer.acceptableContentTypes = request.responseAcceptableContentTypes;
     
     //开始请求
-    NSURLSessionDataTask *task = [manager DELETE:request.requestUrl parameters:request.requestParameters success:success failure:fail];
+//    NSURLSessionDataTask *task = [manager DELETE:request.requestUrl parameters:request.requestParameters success:success failure:fail];
+    
+    
+    NSURLSessionDataTask *task = [manager DELETE:request.requestUrl parameters:request.requestParameters headers:request.headers success:success failure:fail];
     
     return task;
 }
@@ -245,7 +252,9 @@
 
 
     //开始请求
-    NSURLSessionDataTask *task = [manager PUT:request.requestUrl parameters:request.requestParameters success:success failure:fail];
+//    NSURLSessionDataTask *task = [manager PUT:request.requestUrl parameters:request.requestParameters success:success failure:fail];
+    
+    NSURLSessionDataTask *task = [manager PUT:request.requestUrl parameters:request.requestParameters headers:request.headers success:success failure:fail];
 
     return task;
 }

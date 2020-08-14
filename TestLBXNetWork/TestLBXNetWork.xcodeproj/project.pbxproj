@@ -17,6 +17,7 @@
 		73C1283320BBD99F005CC41F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C1283220BBD99F005CC41F /* Assets.xcassets */; };
 		73C1283620BBD99F005CC41F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C1283420BBD99F005CC41F /* LaunchScreen.storyboard */; };
 		73C1283920BBD99F005CC41F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C1283820BBD99F005CC41F /* main.m */; };
+		8D6A8CEE24E656D200B9AAF0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8D6A8CED24E656D200B9AAF0 /* Podfile */; };
 		EF45DE1A8D0751E13EF49CD5 /* libPods-TestLBXNetWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5277671C38B3FBC95D9E04CF /* libPods-TestLBXNetWork.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		73C1283520BBD99F005CC41F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73C1283720BBD99F005CC41F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73C1283820BBD99F005CC41F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D6A8CED24E656D200B9AAF0 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F7767E662E49E79A8ABC241E /* Pods-TestLBXNetWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestLBXNetWork.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestLBXNetWork/Pods-TestLBXNetWork.debug.xcconfig"; sourceTree = "<group>"; };
 		F8BFC14855F3A26BFA53052B /* Pods-TestLBXNetWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestLBXNetWork.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestLBXNetWork/Pods-TestLBXNetWork.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				73544F9E20BE73C600F1E50E /* LBXNetWork.podspec */,
+				8D6A8CED24E656D200B9AAF0 /* Podfile */,
 				73C1282820BBD99E005CC41F /* TestLBXNetWork */,
 				73C1282720BBD99E005CC41F /* Products */,
 				7BB49F6F2BA43A7C67767D58 /* Pods */,
@@ -123,8 +126,6 @@
 				73C1282220BBD99E005CC41F /* Sources */,
 				73C1282320BBD99E005CC41F /* Frameworks */,
 				73C1282420BBD99E005CC41F /* Resources */,
-				2C9E60BABD8BB3DA921E82E8 /* [CP] Embed Pods Frameworks */,
-				B15BB46C7AD372CC8E280074 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6A8CEE24E656D200B9AAF0 /* Podfile in Resources */,
 				73C1283620BBD99F005CC41F /* LaunchScreen.storyboard in Resources */,
 				73C1283320BBD99F005CC41F /* Assets.xcassets in Resources */,
 				73544F9F20BE73C600F1E50E /* LBXNetWork.podspec in Resources */,
@@ -182,36 +184,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C9E60BABD8BB3DA921E82E8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestLBXNetWork/Pods-TestLBXNetWork-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B15BB46C7AD372CC8E280074 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestLBXNetWork/Pods-TestLBXNetWork-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DAAA3E7881A62D49D0A4686A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -370,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -386,7 +358,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEVELOPMENT_TEAM = 8LQ7CL73D8;
 				INFOPLIST_FILE = TestLBXNetWork/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,7 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LQ7CL73D8;
 				INFOPLIST_FILE = TestLBXNetWork/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
