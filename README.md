@@ -10,14 +10,14 @@
 
 #### install by cocoapods
 
-需要AFNetworking3.x和YYCache1.x支持
+需要AFNetworking4.0和YYCache1.x支持
 
 ```
-pod 'LBXNetWork', '~> 1.0.0'
+pod 'LBXNetWork', '~> 1.0.1'
 ```
 
 #### 手动
-将LBXNetWork文件夹拖到工程里，并且需要AFNetworking3.x和YYCache1.0.x库
+将LBXNetWork文件夹拖到工程里，并且需要AFNetworking4.x和YYCache1.0.x库
 
 #### 使用示例
 具体使用看Demo首页里面几个调用方法以及模拟业务层`LBXNetwork (TheAPP)`代码及说明
