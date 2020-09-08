@@ -123,6 +123,10 @@ typedef NS_ENUM(NSInteger, LBXHTTPMethodType) {
 ///保存的请求信息
 @property (nonatomic, strong,nullable) LBXHttpRequest *request;
 
+
+///返回的headers
+@property (nonatomic, strong,nullable) NSDictionary *headers;
+
 /**
  如果设置YES，在responseObject赋值的时候，会打印返回的数据的日志
  默认值策略：

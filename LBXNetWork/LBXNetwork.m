@@ -81,6 +81,7 @@
             {
                 NSHTTPURLResponse *res = (NSHTTPURLResponse*)task.response;
                 response.statusCode = res.statusCode;
+                response.headers = res.allHeaderFields;
             }
             completion(response);
             
