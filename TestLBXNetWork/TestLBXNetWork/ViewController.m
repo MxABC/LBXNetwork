@@ -63,6 +63,7 @@
             NSString *str = [[NSString alloc]initWithData:response.responseObject encoding:NSASCIIStringEncoding];
             
             NSLog(@"%@",str);
+            NSLog(@"headers:%@",response.headers);
         }
         else if (response.error)
         {
