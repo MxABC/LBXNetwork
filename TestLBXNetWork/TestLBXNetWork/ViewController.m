@@ -10,6 +10,7 @@
 
 #import <LBXNetwork.h>
 #import "LBXNetwork+TheAPP.h"
+#import <AFNetworking.h>
 
 @interface ViewController ()
 
@@ -21,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    [self testGet];
+//    [self testGet];
    
 //    [self testChainNum];
     
@@ -30,8 +31,68 @@
 //    [self testDelete];
     
 //    [self testPut];
+    
+    [self testFormData];
 
    
+}
+
+- (void)testFormData
+{
+    UIImage *image = [UIImage imageNamed:@"guide1"];
+    NSData *imageData =  UIImageJPEGRepresentation(image, 0.3);
+
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 100;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/html",@"application/json", @"text/json" ,@"text/javascript", nil];
+    
+    //除文件外的参数
+    NSDictionary *dic = @{@"key1":@"val1",@"key2":@"val2"};
+    
+    [manager POST:@"http://192.168.0.102:8092/req/upImg" parameters:dic headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        
+        /*
+         appendPartWithFileData  设置文件参数，其中name字段某个文件组，例如下面调用的2次，name参数一致，服务器收到内容是这样的
+         keyName1: [
+            {
+              fieldName: 'keyName1',
+              originalFilename: '1.jpg',
+              path: 'public/images/53-JLQAozSBwdeKBunp6nZoA.jpg',//这个服务器自己生成的存储路径
+              headers: [Object],
+              size: 81900
+            },
+            {
+              fieldName: 'keyName1',
+              originalFilename: '2.jpg',
+              path: 'public/images/5MBaa9kWuvBLJ7X_pnuAm0xw.jpg',
+              headers: [Object],
+              size: 81900
+            }
+
+         */
+        [formData appendPartWithFileData:imageData
+                                    name:@"keyName1"
+                                fileName:@"1.jpg"
+                                mimeType:@"image/jpeg"];
+        
+        [formData appendPartWithFileData:imageData
+                                    name:@"keyName1"
+                                fileName:@"2.jpg"
+                                mimeType:@"image/jpeg"];
+        
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"success:%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
