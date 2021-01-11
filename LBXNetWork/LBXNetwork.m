@@ -128,6 +128,111 @@
     return request;
 }
 
+
+#pragma mark- 表单上传文件接口
+
+/// 表单上传文件
+/// @param request 请求参数，文件参数通过requestElseParameters来赋值
+///  requestElseParameters参数格式为NSArray<NSDictionary*>*
+///  NSDictionary包含字段 name,fileName,mimeType以及文件数据fileData(NSData)(或者filePath表示文件路径)
+/// @param uploadProgress 上传进度
+/// @param completion 调用完成
++ (LBXHttpRequest*)PostFormWithRequest:(LBXHttpRequest *)request
+                              progress:(nullable void (^)(double progress))uploadProgress
+                           complection:(void(^)(LBXHttpResponse *response))completion
+{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = request.timeoutInterval;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/html",@"application/json", @"text/json" ,@"text/javascript", nil];
+    
+
+    void (^onProgress)(NSProgress * _Nonnull uploadProgress) = nil;
+    
+    if (uploadProgress) {
+        
+        onProgress = ^(NSProgress * _Nonnull progress)
+        {
+            uploadProgress(progress.fractionCompleted);
+        };
+    }
+    
+    
+    return [manager POST:request.requestUrl parameters:request.requestParameters headers:request.headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+
+        NSArray* fileParameters = request.requestElseParameters;
+        for (int i = 0; i < fileParameters.count; i++) {
+            NSDictionary *dic = fileParameters[i];
+            //下面2个参数有一个即可
+            NSData *fileData = dic[@"fileData"];
+            NSString *filePath = dic[@"filePath"];
+            
+            NSString *name = dic[@"name"];
+            NSString *fileName = dic[@"fileName"];
+            NSString * mimeType = dic[@"mimeType"];
+            
+            if (fileData) {
+                [formData appendPartWithFileData:fileData
+                                            name:name
+                                        fileName:fileName
+                                        mimeType:mimeType];
+            }
+            else if(filePath)
+            {
+                NSError *error = nil;
+                [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:name fileName:fileName mimeType:mimeType error:&error];
+                
+                if (error) {
+                    NSLog(@"表单上传文件 添加文件参数错误: %@",error);
+
+                }
+
+            }
+        }
+        
+    } progress:onProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (completion) {
+            
+            LBXHttpResponse *response = [[LBXHttpResponse alloc]init];
+            response.success = YES;
+            response.request = request;
+            response.responseObject = responseObject;
+            
+            if (task && [task.response isKindOfClass:[NSHTTPURLResponse class]])
+            {
+                NSHTTPURLResponse *res = (NSHTTPURLResponse*)task.response;
+                response.statusCode = res.statusCode;
+                response.headers = res.allHeaderFields;
+            }
+            completion(response);
+           
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (completion)
+        {
+            LBXHttpResponse *response = [[LBXHttpResponse alloc]init];
+            response.success = NO;
+            response.request = request;
+            response.error = error;
+            
+            if (task && [task.response isKindOfClass:[NSHTTPURLResponse class]])
+            {
+                NSHTTPURLResponse *res = (NSHTTPURLResponse*)task.response;
+                response.statusCode = res.statusCode;
+            }
+            
+            completion(response);
+        }
+    }];
+    
+    [[LBXNetwork sharedManager].tasks addObject:request];
+    return request;
+}
+
 #pragma mark-
 #pragma mark- http多个请求
 ///ChainRequest
@@ -181,6 +286,10 @@
     
     return requests;
 }
+
+
+
+
 
 #pragma mark- 取消任务
 - (NSHashTable*)tasks

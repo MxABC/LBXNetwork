@@ -48,6 +48,16 @@ typedef NS_ENUM(NSInteger, LBXNetworkStatus) {
 
 
 
+#pragma mark- 表单上传文件接口
+/// 表单上传文件
+/// @param request 请求参数，文件参数通过requestElseParameters来赋值
+///  requestElseParameters参数格式为NSArray<NSDictionary*>*
+///  NSDictionary包含字段 name,fileName,mimeType以及文件数据fileData(NSData)(或者filePath表示文件路径)
+/// @param uploadProgress 上传进度
+/// @param completion 调用完成
++ (LBXHttpRequest*)PostFormWithRequest:(LBXHttpRequest *)request
+                              progress:(nullable void (^)(double progress))uploadProgress
+                           complection:(void(^)(LBXHttpResponse *response))completion;
 
 
 #pragma mark-

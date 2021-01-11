@@ -61,6 +61,10 @@ typedef NS_ENUM(NSInteger, LBXHTTPMethodType) {
 ///上传参数，类型为NSDictionary或NSData,默认nil
 @property (nonatomic, strong,nullable) id requestParameters;
 
+//其他参数，如表单使用到的文件参数
+@property (nonatomic, strong,nullable) id requestElseParameters;
+
+
 /**
  接收http响应数据ContentTypes
  默认值:
