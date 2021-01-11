@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LBXNetWork"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "http request,tcp stream"
   s.homepage     = "https://github.com/MxABC/LBXNetWork"
 
