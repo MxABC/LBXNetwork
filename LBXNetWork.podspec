@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LBXNetWork"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "http request,tcp stream"
   s.homepage     = "https://github.com/MxABC/LBXNetWork"
 
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'LBXNetWork/**/*.{m,h}'
-  s.public_header_files = 'LBXNetWork/AFNetworkVendor/AFNNetworkRequest.h','LBXNetWork/LBXHttpRequest.h','LBXNetWork/LBXNetWork.h','LBXNetWork/LBXTcpStream/LBXTcpStream.h'
+  s.public_header_files = 'LBXNetWork/AFNetworkVendor/AFNNetworkRequest.h','LBXNetWork/LBXHttpRequest.h','LBXNetWork/LBXNetWork.h','LBXNetWork/LBXTcpStream/LBXTcpClient.h','LBXNetWork/LBXNetWorkMonitor.h'
   s.ios.frameworks = 'Foundation', 'UIKit'
   
   s.dependency 'AFNetworking', '~> 4.0'

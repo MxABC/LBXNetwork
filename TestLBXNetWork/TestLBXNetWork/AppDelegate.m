@@ -11,6 +11,7 @@
 #import <netdb.h>
 #import <sys/socket.h>
 #import <arpa/inet.h>
+#import <LBXNetWorkMonitor.h>
 
 @interface AppDelegate ()
 
@@ -28,6 +29,7 @@
     
 //    [[self class]getIpByHostName:@"www.taobao.com"];
     
+    NSLog(@"%@",[LBXNetWorkMonitor iPAddress:NO]);
         
     
     union {
@@ -70,9 +72,49 @@
 //            un.num = htonl(data.length);
 //        fwrite(un.str, 3, 1, recordFile);
 //    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:[LBXNetWorkMonitor netWorkChangeNotification] object:nil];
+    
+    [[LBXNetWorkMonitor sharedManager]startNotifier];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[LBXNetWorkMonitor sharedManager]stopNotifier];
+    });
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       
+        [[LBXNetWorkMonitor sharedManager]startNotifier];
+    });
 
     
     return YES;
+}
+- (void)reachabilityChanged:(NSNotification *)notification
+{
+    switch ([LBXNetWorkMonitor sharedManager].status) {
+        case LBXNetWorkStatusNotReachable:
+            NSLog(@"网络不可用");
+            break;
+        case LBXNetWorkStatusUnknown:
+            NSLog(@"未知网络");
+            break;
+        case LBXNetWorkStatusWWAN2G:
+            NSLog(@"2G网络");
+            break;
+        case LBXNetWorkStatusWWAN3G:
+            NSLog(@"3G网络");
+            break;
+        case LBXNetWorkStatusWWAN4G:
+            NSLog(@"4G网络");
+            break;
+        case LBXNetWorkStatusWiFi:
+            NSLog(@"WiFi");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 +(NSString*)getIpByHostName:(NSString*)strHostName {
