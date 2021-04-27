@@ -28,9 +28,7 @@
     
 //    [[self class]getIpByHostName:@"www.taobao.com"];
     
-    
-//     [[self class]getIpByHostName:@"www.handkoo.com"];
-    
+        
     
     union {
         char str[4];
